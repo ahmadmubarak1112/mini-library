@@ -1,0 +1,192 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@300;400;500;600;700&display=swap');
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --font-inter: "Inter", sans-serif;
+    --color-sidebar: #f3f5f6;
+    --color-primary: #f7fbfd;
+    --color-hover-primary: #dbf4ec;
+    --color-hover-dark: #175340;
+    --color-hover-secondary: #298060;
+    --text-title: clamp(1.65rem, 2.8vw, 1.9rem);
+    --text-books-title: clamp(1.2rem, 2.2vw, 1.32rem);
+    --text-main: clamp(0.92rem, 1.8vw, 1rem);
+    --text-sidebar-link: clamp(0.95rem, 1.7vw, 1.03rem);
+    --bg-position: right 12px center;
+}
+
+.no-scroll {
+    @apply overflow-y-hidden;
+}
+
+.overlay.show {
+    @apply fixed inset-0 bg-black/55 z-5;
+}
+
+.book-overlay.show {
+    @apply fixed inset-0 bg-black/55 z-7;
+}
+
+#theme-toggle:checked ~ label .toggle-theme-btn {
+    @apply translate-x-3.5;
+}
+
+.sidebar-main-menu-link,
+.sidebar-categories-menu-link {
+    @apply w-full flex gap-2 px-3 py-2.5 hover:bg-hover-primary rounded-md transition-all duration-150 dark:hover:bg-emerald-950;
+}
+
+.sidebar-main-menu-link.active,
+.sidebar-categories-menu-link.active {
+    @apply bg-hover-primary dark:bg-emerald-950;
+}
+
+.sidebar-main-menu-link.active span,
+.sidebar-main-menu-link.active svg,
+.sidebar-categories-menu-link.active span,
+.sidebar-categories-menu-link.active svg {
+    @apply text-hover-secondary dark:text-hover-primary;
+}
+
+.icon-wrapper {
+    @apply bg-hover-primary h-18.75 rounded-xl flex justify-center items-center dark:bg-hover-dark;
+    width: clamp(40px, 80%, 80px);
+}
+
+.library-card-item {
+    @apply flex items-center gap-3.5 rounded-lg border border-slate-300/60 shadow-xs w-full md:w-[33.33%] bg-white px-4 py-4 md:flex-col lg:flex-row dark:bg-zinc-900 dark:border-slate-700/60; 
+}
+
+.hamburger-menu-line {
+    @apply w-7 h-px my-2 block bg-slate-900 dark:bg-slate-100;
+}
+
+#sidebar.active {
+    @apply left-0;
+}
+
+#navbar-mobile.fixed {
+    @apply fixed;   
+}
+
+.sort-by.active {
+    @apply bg-emerald-600;
+}
+
+.dark .sort-by.active {
+    @apply bg-emerald-800;
+}
+
+.sort-by.active svg,
+.sort-by.active p {
+    @apply text-white;
+}
+
+#categories,
+#categories::picker(select),
+#sort,
+#sort::picker(select) {
+    appearance: base-select;
+}
+
+#categories::picker(select),
+#sort::picker(select) {
+    background-color: #fff;
+    border: 1px solid #d1fae5;
+    border-radius: 7px;
+    margin: 5px 0;
+}
+
+#categories option,
+#sort option {
+    padding: 8px 13px;
+    background-color: #fff;
+    color: #475569;
+}
+
+#categories option::checkmark,
+#sort option::checkmark {
+    display: none;
+}
+
+#categories option:hover,
+#categories option:focus,
+#sort option:hover,
+#sort option:focus {
+    background-color: #d1fae5;
+    color: #047857;
+}
+
+#categories option:checked,
+#sort option:checked {
+    background-color: #a7f3d0;
+    color: #065f46;
+    font-weight: 600;
+}
+
+/***** DARK MODE DROPDOWN STYLE *****/
+.dark #categories::picker(select),
+.dark #sort::picker(select) {
+    background-color: #343434;
+    border-color: #191919;
+}
+
+.dark #categories option,
+.dark #sort option {
+    background-color: #343434;
+    color: oklch(86.9% 0.022 252.894);
+}
+
+.dark #categories option:hover,
+.dark #categories option:focus,
+.dark #sort option:hover,
+.dark #sort option:focus {
+    background-color: oklch(43.2% 0.095 166.913);
+    color: oklch(84.5% 0.143 164.978);
+}
+
+.dark #categories option:checked,
+.dark #sort option:checked {
+    background-color: oklch(37.8% 0.077 168.94);
+    color: oklch(76.5% 0.177 163.223);
+}
+
+.modal-book {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.modal-book::-webkit-scrollbar {
+    display: none;
+}
+
+section.view {
+    @apply translate-y-0 opacity-100 pointer-events-auto;
+}
+
+.detail-gallery {
+    @apply block rounded-md w-100 md:w-[calc(50%-12px)] lg:w-[calc(33.33%-12px)];
+}
+
+.favorite-btn.favorite svg {
+    @apply fill-pink-600 stroke-pink-600;
+}
+
+.toast-notif.show {
+    @apply opacity-100 pointer-events-auto;
+}
+
+.icon-wrapper svg {
+    width: clamp(20px, 60%, 50px);
+    height: clamp(20px, 60%, 50px);
+}
+
+.img-zoom-overlay.show {
+    @apply opacity-100 pointer-events-auto;
+}
+
+.zoom-img-gallery.zoom {
+    @apply opacity-100 pointer-events-auto;
+}
