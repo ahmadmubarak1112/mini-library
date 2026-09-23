@@ -542,7 +542,7 @@ function renderBooks(bookList) {
 
                     <img src="${book.cover}" alt="${book.title}" class="w-full">
 
-                    <div class="book-cover-overlay flex justify-center items-center absolute opacity-0 pointer-events-none inset-0 bg-black/50 group-hover:opacity-100 group-hover:pointer-events-auto group transition-all duration-400">
+                    <div class="book-cover-overlay flex justify-center items-center absolute opacity-0 pointer-events-none inset-0 w-full bg-black/50 transition-all duration-400">
 
                         <button type="button" class="detail-btn bg-emerald-600 hover:bg-emerald-700 hover:text-white rounded-md px-5 py-2.5 text-white transition-all duration-200 hover:shadow-lg text-main translate-y-1.25 group-hover:translate-y-0 cursor-pointer">See detail</button>
 
@@ -928,7 +928,6 @@ const cardWrappers = document.querySelectorAll('.card-wrapper');
 const detailBookImgs = modalBook.querySelectorAll('.detail-gallery');
 const imgZoomOverlay = document.querySelector('.img-zoom-overlay');
 const zoomBook = document.querySelector('.zoom-book');
-const bookOverlay = document.querySelector('.book-overlay');
 const bookCards = document.querySelectorAll('.book-card-item');
 const modalCloseBtn = document.querySelector('#modal-close-btn');
 const favoriteCardWrapper = document.querySelector('.favorite-card-wrapper');
@@ -981,6 +980,8 @@ cardWrappers.forEach( (cardWrapper) => {
                 if( book.id === bookCardId ) return book;
 
             });
+
+            
             
             modalBook.classList.add('opacity-100');
             modalBook.classList.remove('pointer-events-none');
@@ -1066,6 +1067,60 @@ cardWrappers.forEach( (cardWrapper) => {
         toastTimeOut = setTimeout( () => toastNotif.classList.remove('show'), 2500);
 
     });
+
+});
+
+function closeAllBookOverlays() {
+
+    document
+        .querySelectorAll('.book-cover.mobile-open')
+        .forEach((cover) => {
+
+            cover.classList.remove('mobile-open');
+
+        });
+
+}
+
+cardWrappers.forEach((cardWrapper) => {
+
+    cardWrapper.addEventListener('pointerup', (e) => {
+
+        // Hanya touchscreen
+        if (e.pointerType !== 'touch') return;
+
+        // Kalau yang disentuh tombol See Detail,
+        // jangan toggle overlay
+        if (e.target.closest('.detail-btn')) return;
+
+        const bookCover = e.target.closest('.book-cover');
+
+        if (!bookCover) return;
+
+        const wasOpen =
+            bookCover.classList.contains('mobile-open');
+
+        cardWrapper
+            .querySelectorAll('.book-cover.mobile-open')
+            .forEach((cover) => {
+                cover.classList.remove('mobile-open');
+            });
+
+        if (!wasOpen) {
+            bookCover.classList.add('mobile-open');
+        }
+
+    });
+
+});
+
+document.addEventListener('pointerup', (e) => {
+
+    if (e.pointerType !== 'touch') return;
+
+    if (e.target.closest('.book-cover')) return;
+
+    closeAllBookOverlays();
 
 });
 

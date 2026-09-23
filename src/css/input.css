@@ -25,9 +25,18 @@
     @apply fixed inset-0 bg-black/55 z-5;
 }
 
-.book-overlay.show {
-    @apply fixed inset-0 bg-black/55 z-7;
+.book-cover.mobile-open .book-cover-overlay {
+    opacity: 1;
+    pointer-events: auto;
 }
+/* .book-overlay.show {
+    @apply fixed inset-0 bg-black/55 z-7;
+} */
+/* 
+.book-cover-overlay.show {
+    opacity: 1;
+    pointer-events: auto;
+} */
 
 #theme-toggle:checked ~ label .toggle-theme-btn {
     @apply translate-x-3.5;
@@ -189,4 +198,13 @@ section.view {
 
 .zoom-img-gallery.zoom {
     @apply opacity-100 pointer-events-auto;
+}
+
+@media (hover: hover) and (pointer: fine) {
+
+    .book-cover:hover .book-cover-overlay {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
 }
