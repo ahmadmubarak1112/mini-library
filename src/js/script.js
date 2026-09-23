@@ -544,7 +544,6 @@ function renderBooks(bookList) {
 
                     <div class="book-cover-overlay flex justify-center items-center absolute opacity-0 pointer-events-none inset-0 bg-black/50 group-hover:opacity-100 group-hover:pointer-events-auto group transition-all duration-400">
 
-                                    
                         <button type="button" class="detail-btn bg-emerald-600 hover:bg-emerald-700 hover:text-white rounded-md px-5 py-2.5 text-white transition-all duration-200 hover:shadow-lg text-main translate-y-1.25 group-hover:translate-y-0 cursor-pointer">See detail</button>
 
                     </div>
@@ -655,7 +654,7 @@ function updateBooks() {
 
     } else {
 
-        result.innerHTML = `No search results found for "<span class="font-semibold text-black">${keyword}</span>"`;
+        result.innerHTML = `No search results found for "<span class="font-semibold text-black dark:text-slate-200">${keyword}</span>"`;
 
     }
 
