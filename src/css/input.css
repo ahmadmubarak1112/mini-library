@@ -29,14 +29,6 @@
     opacity: 1;
     pointer-events: auto;
 }
-/* .book-overlay.show {
-    @apply fixed inset-0 bg-black/55 z-7;
-} */
-/* 
-.book-cover-overlay.show {
-    opacity: 1;
-    pointer-events: auto;
-} */
 
 #theme-toggle:checked ~ label .toggle-theme-btn {
     @apply translate-x-3.5;
@@ -200,7 +192,8 @@ section.view {
     @apply opacity-100 pointer-events-auto;
 }
 
-@media (hover: hover) and (pointer: fine) {
+/***** A DEVICE THAT SUPPORTS HOVER *****/
+@media(hover: hover) and (pointer: fine) {
 
     .book-cover:hover .book-cover-overlay {
         opacity: 1;

@@ -981,8 +981,6 @@ cardWrappers.forEach( (cardWrapper) => {
 
             });
 
-            
-            
             modalBook.classList.add('opacity-100');
             modalBook.classList.remove('pointer-events-none');
             
@@ -1070,55 +1068,52 @@ cardWrappers.forEach( (cardWrapper) => {
 
 });
 
+///// CLOSE BOOK OVERLAYS FUNCTION
 function closeAllBookOverlays() {
 
-    document
-        .querySelectorAll('.book-cover.mobile-open')
-        .forEach((cover) => {
+    document.querySelectorAll('.book-cover.mobile-open').forEach((cover) => {
 
-            cover.classList.remove('mobile-open');
+        cover.classList.remove('mobile-open');
 
-        });
+    });
 
 }
 
+////// POINTER UP DETECTED IN MOBILE DEVICE 
 cardWrappers.forEach((cardWrapper) => {
 
     cardWrapper.addEventListener('pointerup', (e) => {
 
-        // Hanya touchscreen
-        if (e.pointerType !== 'touch') return;
+        ///// ONLY TOUCH
+        if ( e.pointerType !== 'touch' ) return;
 
-        // Kalau yang disentuh tombol See Detail,
-        // jangan toggle overlay
-        if (e.target.closest('.detail-btn')) return;
+        if ( e.target.closest('.detail-btn') ) return;
 
         const bookCover = e.target.closest('.book-cover');
 
-        if (!bookCover) return;
+        if ( !bookCover ) return;
 
-        const wasOpen =
-            bookCover.classList.contains('mobile-open');
+        const wasOpen = bookCover.classList.contains('mobile-open');
 
-        cardWrapper
-            .querySelectorAll('.book-cover.mobile-open')
+        cardWrapper.querySelectorAll('.book-cover.mobile-open')
             .forEach((cover) => {
+
                 cover.classList.remove('mobile-open');
+
             });
 
-        if (!wasOpen) {
-            bookCover.classList.add('mobile-open');
-        }
+        if( !wasOpen ) bookCover.classList.add('mobile-open');
 
     });
 
 });
 
+///// HIDE BOOK COVER OVERLAY WHEN CLICKING OUTSIDE OF IT
 document.addEventListener('pointerup', (e) => {
 
-    if (e.pointerType !== 'touch') return;
+    if ( e.pointerType !== 'touch' ) return;
 
-    if (e.target.closest('.book-cover')) return;
+    if ( e.target.closest('.book-cover') ) return;
 
     closeAllBookOverlays();
 
